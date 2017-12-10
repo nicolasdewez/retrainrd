@@ -1,5 +1,5 @@
 framework:
-    secret: '%env(APP_SECRET)%'
+    secret: '%env(APP_RETRAINRD_SECRET)%'
     #default_locale: en
     #csrf_protection: ~
     #http_method_override: true

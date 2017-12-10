@@ -1,0 +1,10 @@
+csa_guzzle:
+    profiler: '%kernel.debug%'
+    logger: true
+    clients:
+        sncf_api:
+            config:
+                base_uri: '%app.scnf_base_url%'
+                timeout: 2.0
+                headers:
+                    Authorization: '%app.sncf_token%'

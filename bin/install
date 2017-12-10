@@ -6,4 +6,4 @@ cd "`dirname "$0"`/.."
 composer install --no-progress --no-interaction
 
 bin/console doctrine:database:create --if-not-exists
-# bin/console doctrine:migrations:migrate --no-interaction
+bin/console doctrine:migrations:migrate --no-interaction
