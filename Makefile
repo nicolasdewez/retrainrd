@@ -11,6 +11,8 @@ APP = app
 WEB = web
 DB = db
 DB_NAME = retrainrd
+RABBITMQ = rabbitmq
+MAILER = mailer
 NETWORK = retrainrd
 DEBUG = $(debug)
 
@@ -56,6 +58,8 @@ ready: pretty ## Check if environment is ready
 	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(APP):9000 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
 	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(WEB):80 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
 	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(DB):3306 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
+	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(RABBITMQ):5672 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
+	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(MAILER):1025 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
 
 .PHONY: ps
 ps: ## List containers status
@@ -82,6 +86,38 @@ destroy: stop rm ## Stop and remove containers
 
 .PHONY: recreate
 recreate: destroy up ## Recreate containers
+
+
+
+.PHONY: queue-open
+queue-open: ## Open the queue admin
+	@xdg-open http://$(RABBITMQ).$(NETWORK):15672/ > /dev/null
+
+.PHONY: queue-init
+queue-init: ## Init exchanges / queues in RabbitMq
+	@$(EXEC) $(APP) bin/console rabbitmq:setup-fabric
+
+.PHONY: queue-purge
+queue-purge: ## Purge queue (ie. make queue-purge name="registration")
+ifndef name
+	@echo "To use the 'queue-purge' target, you MUST add the 'name' argument"
+	exit 1
+endif
+	@$(EXEC) $(APP) bin/console rabbitmq:purge $(name) --no-interaction
+
+
+
+.PHONY: mailer-open
+mailer-open: ## Open the mailer
+	@xdg-open http://$(MAILER).$(NETWORK):1080/ > /dev/null
+
+.PHONY: mailer-send
+mailer-send: ## Send emails
+	@$(EXEC) $(APP) bin/console swiftmailer:spool:send
+
+.PHONY: mailer-test
+mailer-test: ## Send a test email
+	@$(EXEC) $(APP) bin/console swiftmailer:email:send --from=from@retrainrd.com --to=to@retrainrd.com --subject=test --body="It's a test !" --no-interaction
 
 
 
@@ -137,7 +173,16 @@ app-phpstan: ## Run phpstan
 app-phploc: ## Run phploc
 	@$(EXEC) $(APP) vendor/bin/phploc -- src
 
- .PHONY: app-changelog
+.PHONY: app-workflow
+app-workflow: ## Dump workflow (ie. make app-workflow name="registration")
+ifndef name
+	@echo "To use the 'workflow' target, you MUST add the 'name' argument"
+	exit 1
+endif
+	@mkdir -p build
+	@$(EXEC) $(APP) bin/console workflow:dump $(name) | dot -Tpng -o build/workflow-$(name).png
+
+.PHONY: app-changelog
 app-changelog: ## Generate changelog (ie. make app-changelog from="v1.0.0" to="v1.1.0")
 ifndef from
 	@echo "To use the 'app-changelog' target, you MUST add the 'from' argument"

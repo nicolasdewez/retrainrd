@@ -49,5 +49,23 @@ services:
             retrainrd:
                 aliases:
                     - db
-        volumes:
-            - ./docker/db:/usr/local/src
+
+    rabbitmq:
+        image: rabbitmq:3-management
+        ports:
+           - "15672:15672"
+           - "5672:5672"
+        networks:
+           retrainrd:
+               aliases:
+                   - rabbitmq
+
+    mailer:
+        image: schickling/mailcatcher
+        ports:
+            - "1080:1080"
+            - "1025:1025"
+        networks:
+           retrainrd:
+               aliases:
+                   - mailer

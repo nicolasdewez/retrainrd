@@ -25,6 +25,25 @@ class StopManager
         return $this->stopRepository->findOneBy(['code' => $code]);
     }
 
+    /**
+     * @param Stop[] $stops
+     */
+    public function saveStops(array $stops): void
+    {
+        $nb = 0;
+        foreach ($stops as $stop)  {
+            ++$nb;
+
+            $this->persist($stop);
+
+            if (0 !== ($nb % 500)) {
+                continue;
+            }
+
+            $this->manager->flush();
+        }
+    }
+
     public function persist(Stop $stop): void
     {
         if (null !== $stop->getId()) {
@@ -32,10 +51,5 @@ class StopManager
         }
 
         $this->manager->persist($stop);
-    }
-
-    public function flush(): void
-    {
-        $this->manager->flush();
     }
 }

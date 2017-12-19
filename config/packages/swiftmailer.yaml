@@ -1,0 +1,4 @@
+swiftmailer:
+    url: '%env(resolve:RETRAINRD_MAILER_URL)%'
+    spool:
+        type: 'file'

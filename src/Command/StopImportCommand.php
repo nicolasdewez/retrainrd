@@ -51,7 +51,7 @@ class StopImportCommand extends Command
 
         $output->writeln('<info>Create or edit each entity</info>');
 
-        $nb = 0;
+        $stops = [];
         foreach ($stopAreas as $key => $stopArea) {
             $stop = $this->manager->getStopByCode($stopArea->getId());
             $stop = $this->transformer->execute($stopArea, $stop);
@@ -63,15 +63,11 @@ class StopImportCommand extends Command
                 continue;
             }
 
-            ++$nb;
-            $this->manager->persist($stop);
-
-            if (0 === ($nb % 500)) {
-                $this->manager->flush();
-            }
+            $stops[] = $stop;
         }
 
-        $this->manager->flush();
+        $output->writeln('<info>Save in database</info>');
+        $this->manager->saveStops($stops);
 
         $output->writeln('<info>Process finished</info>');
     }

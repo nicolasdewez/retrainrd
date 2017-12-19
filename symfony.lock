@@ -71,6 +71,9 @@
     "doctrine/orm": {
         "version": "v2.5.13"
     },
+    "egulias/email-validator": {
+        "version": "2.1.3"
+    },
     "friendsofphp/php-cs-fixer": {
         "version": "2.2",
         "recipe": {
@@ -125,6 +128,9 @@
             "ref": "fe60ce509ef04a3f40da96e3979bc8d9b13b2372"
         }
     },
+    "monolog/monolog": {
+        "version": "1.23.0"
+    },
     "myclabs/deep-copy": {
         "version": "1.7.0"
     },
@@ -169,6 +175,18 @@
     },
     "phar-io/version": {
         "version": "1.0.1"
+    },
+    "php-amqplib/php-amqplib": {
+        "version": "v2.7.0"
+    },
+    "php-amqplib/rabbitmq-bundle": {
+        "version": "1.12",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "1.12",
+            "ref": "ce3ca2e4577270c4f518539aa6b9e878998fcfef"
+        }
     },
     "php-cs-fixer/diff": {
         "version": "v1.2.0"
@@ -290,6 +308,9 @@
             "ref": "aaddfdf43cdecd4cf91f992052d76c2cadc04543"
         }
     },
+    "swiftmailer/swiftmailer": {
+        "version": "v6.0.2"
+    },
     "symfony/asset": {
         "version": "v4.0.1"
     },
@@ -383,6 +404,18 @@
             "ref": "fadbfe33303a76e25cb63401050439aa9b1a9c7f"
         }
     },
+    "symfony/monolog-bridge": {
+        "version": "v4.0.2"
+    },
+    "symfony/monolog-bundle": {
+        "version": "3.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.1",
+            "ref": "c24944bd87dacf0bb8fa218dc21e4a70fff56882"
+        }
+    },
     "symfony/options-resolver": {
         "version": "v4.0.0"
     },
@@ -434,6 +467,15 @@
     "symfony/stopwatch": {
         "version": "v4.0.0"
     },
+    "symfony/swiftmailer-bundle": {
+        "version": "2.5",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "8daf8ede72274989fb0dc66b83cb4bc1693afbb9"
+        }
+    },
     "symfony/templating": {
         "version": "v4.0.0"
     },
@@ -471,6 +513,15 @@
             "branch": "master",
             "version": "3.3",
             "ref": "6bdfa1a95f6b2e677ab985cd1af2eae35d62e0f6"
+        }
+    },
+    "symfony/workflow": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "7c8798612bf94fbe4cb75056a4cd7ea3a9183698"
         }
     },
     "symfony/yaml": {

@@ -1,0 +1,18 @@
+{% extends 'mailing/base.html.twig' %}
+
+{% trans_default_domain 'mails' %}
+
+{% block body %}
+    <h2>{{ 'registration.title'|trans }}</h2>
+
+    {{ 'registration.body'|trans }}
+
+    <br>
+
+    {{ 'registration.username'|trans }} {{ user.username }}
+
+    <br>
+
+    {{ 'registration.active'|trans }}
+    <a href="{{ url('app_active', {'registrationCode': user.registrationCode}) }}">{{ 'registration.active_link'|trans }}</a>
+{% endblock %}

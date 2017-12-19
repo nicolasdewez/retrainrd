@@ -36,6 +36,9 @@ RUN curl -sL https://packagecloud.io/gpg.key | apt-key add - \
     && apt-get update && apt-get install --yes blackfire-agent \
     && rm -rf /var/lib/apt/lists/*
 
+# Graphviz
+RUN apt-get install -y graphviz
+
 # CLEAN
 RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 

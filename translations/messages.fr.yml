@@ -1,7 +1,116 @@
-Stop: Gare
-ID: ID
-Code: Code
-Name: Libellé
-Label: Libellé long
-Latitude: Latitude
-Longitude: Longitude
+workflow:
+    registration:
+        created: Créée
+        registered: En-cours
+        activated: Terminée
+
+role:
+    user: Utilisateur
+    admin: Administrateur
+
+form:
+    save: Enregistrer
+    registration:
+        first_name: Prénom
+        last_name: Nom
+        email: Email
+        username: Nom d'utilisateur
+    active:
+        password_1: Mot de passe
+        password_2: Répêter le mot de passe
+    password_lost:
+        username: Nom d'utilisateur
+        email: Email
+    login:
+        submit: Se connecter
+        username: Nom d'utilisateur
+        password: Mot de passe
+    my_account:
+        first_name: Prénom
+        last_name: Nom
+        email: Email
+        email_notification: Notification par email
+        current_password: Mot de passe actuel
+        new_password_1: Nouveau mot de passe
+        new_password_2: Répêter le mot de passe
+
+registration:
+    title: Inscription
+    link_login: J'ai déjà un compte.
+    ok: Votre demande d'inscription est en cours. Un email va être envoyé d'ici quelques minutes.
+
+active:
+    title: Définition du mot de passe
+    ok: Votre mot de passe a été défini. Vous pouvez maintenant utiliser le nom d'utilisateur et le mot de passe que vous avez choisis pour vous connecter.
+
+password_lost:
+    title: Mot de passe perdu
+    ok: Votre demande de réinitialisation de mot de passe est en cours. Un email va être envoyé d'ici quelques minutes.
+    link_login: Je me connecte.
+
+login:
+    title: Identifiez-vous
+    link_password: J'ai perdu mon mot de passe
+    link_registration: Je n'ai pas de compte
+
+my_account:
+    title: Mise à jour de mes informations personnelles
+    ok: Vos informations personnelles ont été mises à jour
+
+anonymous:
+    home:
+        title: Bienvenue !
+        sub_title: Retrainrd est une application permettant de marquer les retards et différents problèmes rencontrés lors de vos voyages SNCF.
+        registration_title: Inscription
+        registration_body_1: Vous pouvez vous inscrire en suivant
+        registration_body_2: ce lien.
+        registration_body_3: Quelques informations vous seront demandées.
+        registration_body_4: Ensuite vous pourrez profiter pleinement de toutes les fonctionnalités.
+        connection_title: Connexion
+        connection_body_1: Vous avez déjà un compte ? Alors cliquez
+        connection_body_2: ici.
+        password_lost_title: Mot de passe perdu
+        password_lost_body_1: Si vous avez perdu votre mot de passe, pas de panique !
+        password_lost_body_2: Suivez
+        password_lost_body_3: ce lien
+        password_lost_body_4: ", remplissez le formulaire et un nouveau mot de passe sera créé."
+
+
+admin:
+    menu:
+        home: Accueil
+        permissions: Droits d'accès
+        user: Utilisateur
+        user_admin: Administrateur
+        parameters: Paramétrage
+        stop: Gare
+    entities:
+        stop: Gare
+        user: Utilisateur
+        user_admin: Administrateur
+    stop:
+        fields:
+            id: Id
+            code: Code
+            name: Nom
+            label: Libellé
+            latitude: Latitude
+            longitude: Longitude
+    user_admin:
+        fields:
+            id: Id
+            username: Nom d'utilisateur
+            password: Mot de passe
+            first_name: Prénom
+            last_name: Nom
+            email: Email
+            enabled: Actif
+    user:
+        fields:
+            id: Id
+            username: Nom d'utilisateur
+            first_name: Prénom
+            last_name: Nom
+            email: Email
+            enabled: Actif
+            registration_state: Etat d'inscription

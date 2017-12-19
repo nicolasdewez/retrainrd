@@ -1,6 +1,10 @@
 parameters:
     locale: 'fr'
 
+    router.request_context.host: '%env(RETRAINRD_APP_HOST)%'
+    router.request_context.scheme: '%env(RETRAINRD_APP_SCHEME)%'
+    router.request_context.base_url: '%env(RETRAINRD_APP_BASE_URL)%'
+
     app.scnf_base_url: 'https://api.sncf.com/v1/'
     app.sncf_token: '%env(RETRAINRD_APP_SNCF_TOKEN)%'
 
@@ -12,6 +16,8 @@ services:
         public: false
         bind:
             $clientSNCF: '@csa_guzzle.client.sncf_api'
+            $stateMachineRegistration: '@state_machine.registration'
+            $secret: '%env(RETRAINRD_APP_SECRET)%'
 
     App\:
         resource: '../src/*'
@@ -20,3 +26,28 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+
+    App\Producer\MailDisableAccountProducer:
+        arguments:
+            $producer: '@old_sound_rabbit_mq.mail_disable_account_producer'
+
+    App\Producer\MailEnableAccountProducer:
+        arguments:
+            $producer: '@old_sound_rabbit_mq.mail_enable_account_producer'
+
+    App\Producer\MailUpdateAccountProducer:
+            arguments:
+                $producer: '@old_sound_rabbit_mq.mail_update_account_producer'
+
+    App\Producer\PasswordLostProducer:
+        arguments:
+            $producer: '@old_sound_rabbit_mq.password_lost_producer'
+
+    App\Producer\RegistrationProducer:
+        arguments:
+            $producer: '@old_sound_rabbit_mq.registration_producer'
+
+    App\Serializer\UserHandler:
+        tags:
+            - { name: 'jms_serializer.handler', type: 'App\Entity\User', format: 'json', direction: 'deserialization', method: 'deserializeUserFromJson' }

@@ -1,12 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Travel Book{% endblock %}</title>
+    {#<link rel="stylesheet" type="text/css" href="{{ asset('build/style-app.css') }}" />#}
+    {% block stylesheets %}{% endblock %}
+    {#<link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />#}
+</head>
+<body>
+
+{# User bar #}
+{{ render(controller('App\\Controller\\SecurityController:userBarAction')) }}
+
+{# Header #}
+{{ include('common/header.html.twig') }}
+
+<div class="body">
+    {# Flash#}
+    {{ include('common/flash.html.twig') }}
+
+    {% block body %}{% endblock %}
+</div>
+
+{#<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>#}
+{#<script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>#}
+{#<script type="text/javascript" src="{{ asset('build/script-app.js') }}"></script>#}
+{% block javascripts %}{% endblock %}
+</body>
 </html>
