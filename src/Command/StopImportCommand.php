@@ -37,7 +37,7 @@ class StopImportCommand extends Command
     public function configure()
     {
         $this
-            ->setName('app:import:stop')
+            ->setName('app:stop:import')
             ->setDescription('Import stops of SNCF')
         ;
     }

@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/style-errors.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <div id="noResult">
+        <div id="errorCont" class="pos-abs">
+            <strong>404 - Page non trouvée</strong> <br>
+            <strong style="font-size:18px;">Désolé, cette page semble être partie en voyage !</strong>
+            <div style="font-size:16px;">
+                <br>
+                {% if not is_granted('IS_AUTHENTICATED_FULLY') %}
+                    Vous pouvez repenser à vos voyages en allant sur notre <a href="{{ path('app_anonymous_home') }}">page d'accueil</a> ;-)
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

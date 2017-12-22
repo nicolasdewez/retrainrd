@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('build/style-errors.css') }}" />
+{% endblock %}
+
+{% block body %}
+    <div id="noResult">
+        <div id="errorCont" class="pos-abs">
+            <strong>403 - Accès interdit</strong> <br>
+            <strong style="font-size:18px;">Désolé, vous n'avez pas les autorisations nécessaires pour accéder à cette page !</strong>
+        </div>
+    </div>
+{% endblock %}

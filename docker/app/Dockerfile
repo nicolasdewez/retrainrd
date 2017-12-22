@@ -36,6 +36,23 @@ RUN curl -sL https://packagecloud.io/gpg.key | apt-key add - \
     && apt-get update && apt-get install --yes blackfire-agent \
     && rm -rf /var/lib/apt/lists/*
 
+# Yarn
+RUN curl -sL https://deb.nodesource.com/setup_6.x | bash -
+RUN apt-get install nodejs
+
+RUN curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+RUN apt-get install apt-transport-https && \
+    apt-get update && \
+    apt-get install -y yarn
+
+RUN mkdir /var/www/.config && \
+    chmod -R 777 /var/www/.config && \
+    mkdir /var/www/.cache && \
+    chmod -R 777 /var/www/.cache && \
+    touch /var/www/.yarnrc && \
+    chmod 777 /var/www/.yarnrc
+
 # Graphviz
 RUN apt-get install -y graphviz
 
