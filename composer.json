@@ -6,6 +6,9 @@
         "csa/guzzle-bundle": "^3.0",
         "javiereguiluz/easyadmin-bundle": "^1.17",
         "jms/serializer-bundle": "^2.3",
+        "knpuniversity/oauth2-client-bundle": "^1.15",
+        "league/oauth2-facebook": "^2.0",
+        "league/oauth2-google": "^2.0",
         "php-amqplib/rabbitmq-bundle": "^1.14",
         "sensio/framework-extra-bundle": "^5.1",
         "symfony/console": "^4.0",
@@ -30,6 +33,7 @@
         "phpmetrics/phpmetrics": "^2.3",
         "phpstan/phpstan": "^0.9.1",
         "phpunit/phpunit": "^6.5",
+        "sensiolabs/security-checker": "^4.1",
         "symfony/debug-bundle": "^4.0",
         "symfony/dotenv": "^4.0",
         "symfony/maker-bundle": "^1.0",
@@ -54,7 +58,8 @@
     "scripts": {
         "auto-scripts": {
             "cache:clear": "symfony-cmd",
-            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd"
+            "assets:install --symlink --relative %PUBLIC_DIR%": "symfony-cmd",
+            "security-checker security:check": "script"
         },
         "post-install-cmd": [
             "@auto-scripts"

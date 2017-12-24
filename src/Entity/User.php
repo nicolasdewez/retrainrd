@@ -12,13 +12,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Table(indexes={
- *     @ORM\Index(name="user_username", columns={"username"}),
+ *     @ORM\Index(name="user_email", columns={"email"}),
  *     @ORM\Index(name="user_registration_code", columns={"registration_code"})
  * })
  *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  *
- * @UniqueEntity(fields={"username"}, groups={"registration", "admin_create"})
+ * @UniqueEntity(fields={"email"}, groups={"registration", "admin_create"})
  */
 class User implements AdvancedUserInterface
 {
@@ -42,13 +42,13 @@ class User implements AdvancedUserInterface
     /**
      * @var string
      *
-     * @ORM\Column(length=30, unique=true)
+     * @ORM\Column(unique=true)
      *
-     * @Assert\NotBlank(groups={"registration", "admin_create"})
-     * @Assert\Length(min=4, max=30, groups={"registration", "admin_create"})
-     * @Assert\Regex(pattern="/^[a-z0-9_]+$/i", groups={"registration", "admin_create"})
+     * @Assert\NotBlank(groups={"my_account", "registration", "admin_create"})
+     * @Assert\Length(min=6, max=255, groups={"my_account", "registration", "admin_create"})
+     * @Assert\Email(groups={"my_account", "registration", "admin_create"})
      */
-    private $username;
+    private $email;
 
     /**
      * @var string
@@ -79,17 +79,6 @@ class User implements AdvancedUserInterface
      * @Assert\Length(min=2, max=50, groups={"my_account", "registration", "admin_create", "admin_edit", "user_edit"})
      */
     private $lastName;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column
-     *
-     * @Assert\NotBlank(groups={"my_account", "registration", "admin_create"})
-     * @Assert\Length(min=6, max=255, groups={"my_account", "registration", "admin_create"})
-     * @Assert\Email(groups={"my_account", "registration", "admin_create"})
-     */
-    private $email;
 
     /**
      * @var array
@@ -162,14 +151,14 @@ class User implements AdvancedUserInterface
         return $this->id;
     }
 
-    public function getUsername(): ?string
+    public function getEmail(): ?string
     {
-        return $this->username;
+        return $this->email;
     }
 
-    public function setUsername(string $username): void
+    public function setEmail(string $email): void
     {
-        $this->username = $username;
+        $this->email = $email;
     }
 
     public function getPassword(): ?string
@@ -200,16 +189,6 @@ class User implements AdvancedUserInterface
     public function setLastName(string $lastName): void
     {
         $this->lastName = $lastName;
-    }
-
-    public function getEmail(): ?string
-    {
-        return $this->email;
-    }
-
-    public function setEmail(string $email): void
-    {
-        $this->email = $email;
     }
 
     public function getRoles(): array
@@ -345,5 +324,13 @@ class User implements AdvancedUserInterface
      */
     public function eraseCredentials()
     {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUsername(): string
+    {
+        return $this->email;
     }
 }

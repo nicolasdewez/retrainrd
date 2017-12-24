@@ -2,12 +2,13 @@
 
 namespace App\Session;
 
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
 class FlashMessage
 {
-    /** @var SessionInterface */
+    /** @var Session */
     private $session;
 
     /** @var TranslatorInterface */

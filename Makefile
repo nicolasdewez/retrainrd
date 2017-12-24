@@ -161,6 +161,11 @@ app-exec: ## Open a shell in the application container (options: user [www-data]
 	$(eval cmd ?= bash)
 	@$(COMPOSE) exec --user $(user) $(cont) $(cmd)
 
+.PHONY: app-ass-comp
+app-ass-comp: ## Compile assets
+	$(eval env ?= dev)
+	@$(EXEC) $(APP) ./node_modules/.bin/encore $(env)
+
 .PHONY: app-php-cs
 app-php-cs: ## Run php-cs-fixer to fix
 	@$(EXEC) $(APP) vendor/bin/php-cs-fixer fix -v --diff --config=.php_cs.dist

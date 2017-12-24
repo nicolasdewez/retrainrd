@@ -4,15 +4,15 @@
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                        <span class="glyphicon glyphicon-user"></span> {{ firstname }} {{ lastname }} ({{ username }}) <span class="caret"></span>
+                        <span class="glyphicon glyphicon-user"></span> {{ firstName }} {{ lastName }} ({{ username }}) <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ path('app_my_account') }}">Mon compte</a></li>
+                        <li><a href="{{ path('app_account_my_account') }}">Mon compte</a></li>
                         {% if  isAdmin %}
                             <li><a href="{{ path('admin') }}">Administration</a></li>
                         {% endif %}
                         <li role="separator" class="divider"></li>
-                        <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+                        <li><a href="{{ path('app_disconnection') }}">Se déconnecter</a></li>
                     </ul>
                 </li>
             </ul>

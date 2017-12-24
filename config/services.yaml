@@ -27,6 +27,15 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Controller\Security\FacebookController:
+        arguments:
+            $client: '@knpu.oauth2.client.facebook'
+        tags: ['controller.service_arguments']
+
+    App\Controller\Security\GoogleController:
+        arguments:
+            $client: '@knpu.oauth2.client.google'
+        tags: ['controller.service_arguments']
 
     App\Producer\MailDisableAccountProducer:
         arguments:

@@ -25,7 +25,6 @@ class MyAccountType extends AbstractType
         $builder
             ->add('firstName', TextType::class, ['label' => 'form.my_account.first_name'])
             ->add('lastName', TextType::class, ['label' => 'form.my_account.last_name'])
-            ->add('email', EmailType::class, ['label' => 'form.my_account.email'])
             ->add('emailNotification', CheckboxType::class, [
                 'label' => 'form.my_account.email_notification',
                 'required' => false,

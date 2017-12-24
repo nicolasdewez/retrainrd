@@ -2,11 +2,11 @@ controllers:
     resource: '../src/Controller/'
     type: 'annotation'
 
-app_login_check:
+app_connection_check:
     path: '/login-check'
     methods: ['POST']
 
-app_logout:
+app_disconnection:
     path: '/logout'
     methods: ['GET']
 

@@ -1,0 +1,15 @@
+knpu_oauth2_client:
+    clients:
+        facebook:
+            type: facebook
+            client_id: 138431276838896
+            client_secret: a9fab1a03256885b5ff188f0733854e6
+            redirect_route: app_connection_facebook_check
+            graph_api_version: v2.11
+
+        google:
+            type: google
+            client_id:  12102735052-k4ieijkh94pn031la6r9qmdf6afaabi8.apps.googleusercontent.com
+            client_secret: ecqmr6PLmTlcG4Gfxpgp-dUq
+            redirect_route: app_connection_google_check
+            redirect_params: {}

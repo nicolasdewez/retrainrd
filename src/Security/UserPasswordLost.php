@@ -50,7 +50,7 @@ class UserPasswordLost
     {
         if (!$this->workflow->canApplyPasswordLost($user)) {
             $this->logger->error(sprintf(
-                'Process password lost can not be apply for user §s because workflow not support this.',
+                'Process password lost can not be apply for user %s because workflow not support this.',
                 $user->getUsername()
             ));
 

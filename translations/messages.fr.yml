@@ -14,21 +14,18 @@ form:
         first_name: Prénom
         last_name: Nom
         email: Email
-        username: Nom d'utilisateur
     active:
         password_1: Mot de passe
         password_2: Répêter le mot de passe
     password_lost:
-        username: Nom d'utilisateur
         email: Email
     login:
         submit: Se connecter
-        username: Nom d'utilisateur
+        email: Email
         password: Mot de passe
     my_account:
         first_name: Prénom
         last_name: Nom
-        email: Email
         email_notification: Notification par email
         current_password: Mot de passe actuel
         new_password_1: Nouveau mot de passe
@@ -41,7 +38,7 @@ registration:
 
 active:
     title: Définition du mot de passe
-    ok: Votre mot de passe a été défini. Vous pouvez maintenant utiliser le nom d'utilisateur et le mot de passe que vous avez choisis pour vous connecter.
+    ok: Votre mot de passe a été défini. Vous pouvez maintenant utiliser l'email et le mot de passe que vous avez choisis pour vous connecter.
 
 password_lost:
     title: Mot de passe perdu

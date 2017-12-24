@@ -5,29 +5,48 @@ namespace App\Command;
 use App\Entity\User;
 use App\Security\Role;
 use App\Workflow\RegistrationDefinitionWorkflow;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class AdminUserCommand extends ContainerAwareCommand
+class AdminUserCommand extends Command
 {
+    /** @var EntityManagerInterface */
+    private $manager;
+
+    /** @var UserPasswordEncoderInterface */
+    private $userPasswordEncoder;
+
+    /** @var ValidatorInterface */
+    private $validator;
+
+    public function __construct(EntityManagerInterface $manager, UserPasswordEncoderInterface $userPasswordEncoder, ValidatorInterface $validator)
+    {
+        parent::__construct();
+
+        $this->validator = $validator;
+        $this->userPasswordEncoder = $userPasswordEncoder;
+        $this->manager = $manager;
+    }
+
     protected function configure()
     {
         $this
             ->setName('app:admin:create')
             ->setDescription('Create user')
-            ->addArgument('username', InputArgument::REQUIRED, 'Username')
+            ->addArgument('email', InputArgument::REQUIRED, 'Email')
             ->addArgument('password', InputArgument::REQUIRED, 'Password (not encoded)')
         ;
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $em = $this->getContainer()->get('doctrine.orm.entity_manager');
-
         $user = $this->createUser($input);
-        $errors = $this->getContainer()->get('validator')->validate($user);
+        $errors = $this->validator->validate($user);
 
         if (count($errors)) {
             $output->writeln('<error>User is not valid.</error>');
@@ -36,8 +55,8 @@ class AdminUserCommand extends ContainerAwareCommand
             return;
         }
 
-        $em->persist($user);
-        $em->flush();
+        $this->manager->persist($user);
+        $this->manager->flush();
 
         $output->writeln('<info>User created.</info>');
     }
@@ -45,18 +64,17 @@ class AdminUserCommand extends ContainerAwareCommand
     private function createUser(InputInterface $input): User
     {
         $user = new User();
-        $user->setUsername($input->getArgument('username'));
+        $user->setEmail($input->getArgument('email'));
         $user->setRoles([Role::ADMIN]);
         $user->setPassword($input->getArgument('password'));
-        $user->setFirstName($input->getArgument('username'));
-        $user->setLastName($input->getArgument('username'));
-        $user->setEmail(sprintf('%s@retrainrd.com', $input->getArgument('username')));
+        $user->setFirstName('');
+        $user->setLastName('');
         $user->setRegistrationCode('');
         $user->setRegistrationState(RegistrationDefinitionWorkflow::PLACE_ACTIVATED);
         $user->setEnabled(true);
 
         $user->setPassword(
-            $this->getContainer()->get('security.password_encoder')->encodePassword($user, $user->getPassword())
+            $this->userPasswordEncoder->encodePassword($user, $user->getPassword())
         );
 
         return $user;

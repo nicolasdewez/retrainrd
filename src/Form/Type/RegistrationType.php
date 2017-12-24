@@ -24,23 +24,8 @@ class RegistrationType extends AbstractType
             ->add('firstName', TextType::class, ['label' => 'form.registration.first_name'])
             ->add('lastName', TextType::class, ['label' => 'form.registration.last_name'])
             ->add('email', EmailType::class, ['label' => 'form.registration.email'])
-            ->add('username', TextType::class, ['label' => 'form.registration.username'])
 
         ;
-
-        if (!$options['with_roles']) {
-            return;
-        }
-
-        $builder->add('roles', ChoiceType::class, [
-            'label' => 'form.admin.users.edit.roles',
-            'choices' => [
-                Role::TITLE_USER => Role::USER,
-                Role::TITLE_ADMIN => Role::ADMIN,
-            ],
-            'required' => true,
-            'multiple' => true,
-        ]);
     }
 
     /**
@@ -51,7 +36,6 @@ class RegistrationType extends AbstractType
         $resolver->setDefaults([
             'validation_groups' => [Group::USER_REGISTRATION],
             'data_class' => User::class,
-            'with_roles' => false,
         ]);
     }
 }

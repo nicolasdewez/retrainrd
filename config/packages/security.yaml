@@ -6,27 +6,34 @@ security:
         users:
             entity:
                 class: App\Entity\User
-                property: username
+                property: email
 
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
-        unsecured:
-            pattern: ^/(login|registration|password-lost|active/.*)?$
+        simple-registration:
+            pattern: ^/(registration|active/.*)
+            anonymous: true
+
+        account:
+            pattern: ^/password-lost$
+            anonymous: true
+
+        connection:
+            pattern: ^/connect(/.*)?
             anonymous: true
 
         app:
             provider: users
             pattern: ^/
             form_login:
-                login_path: app_login
-                check_path: app_login_check
+                login_path: app_connection
+                check_path: app_connection_check
                 success_handler: App\Handler\AuthenticationSuccessHandler
             logout:
-                path: app_logout
-                target: app_login
-
+                path: app_disconnection
+                target: app_connection
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }

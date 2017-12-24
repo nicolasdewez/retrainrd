@@ -30,15 +30,13 @@ class AskPasswordLost
     {
         /** @var User $userInDatabase */
         $userInDatabase = $this->manager->getRepository(User::class)->findOneBy([
-            'username' => $user->getUsername(),
             'email' => $user->getEmail(),
         ]);
 
         if (null === $userInDatabase) {
             $this->logger->info(sprintf(
-                '[%s] No users found for username %s and email %s',
+                '[%s] No users found for email %s',
                 Log::SUBJECT_PASSWORD_LOST,
-                $user->getUsername(),
                 $user->getEmail()
             ));
 
@@ -46,9 +44,8 @@ class AskPasswordLost
         }
 
         $this->logger->info(sprintf(
-            '[%s] Ask for %s and %s',
+            '[%s] Ask for %s',
             Log::SUBJECT_REGISTRATION,
-            $user->getUsername(),
             $user->getEmail()
         ));
 

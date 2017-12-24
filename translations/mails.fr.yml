@@ -2,7 +2,6 @@ registration:
     subject: "[Retrainrd] Inscription"
     title: "Inscription"
     body: "Nous avons le plaisir de vous confirmer la création de votre compte."
-    username: "Pour rappel, voici votre login : "
     active: "Pour activer votre compte, merci de cliquer sur ce lien :"
     active_link: "ici"
 
@@ -10,7 +9,6 @@ password_lost:
     subject: "[Retrainrd] Mot de passe perdu"
     title: "Mot de passe perdu"
     body: "Vous avez fait la demande de réinitialisation de mot de passe."
-    username: "Pour rappel, voici votre login : "
     reset: "Pour créer un nouveau mot de passe, merci de cliquer sur ce lien :"
     reset_link: "ici"
 

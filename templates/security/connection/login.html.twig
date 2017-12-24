@@ -13,13 +13,21 @@
 
         <h2>{{ 'login.title'|trans }}</h2>
 
-        {{ form_start(form, {'action': path('app_login_check')}) }}
+        {{ form_start(form, {'action': path('app_connection_check')}) }}
             {{ form_widget(form) }}
 
             <input type="submit" value="{{ 'form.login.submit'|trans }}" class="btn btn-primary pull-right" />
         {{ form_end(form) }}
 
-        <a href="{{ path('app_password_lost') }}">{{ 'login.link_password'|trans }}</a>
-        <a href="{{ path('app_registration') }}">{{ 'login.link_registration'|trans }}</a>
+        <br><br>
+
+        <a href="{{ path('app_connection_facebook') }}">Se connecter avec Facebook</a>
+        <br>
+        <a href="{{ path('app_connection_google') }}">Se connecter avec Google</a>
+
+        <br><br>
+        <a href="{{ path('app_account_password_lost') }}">{{ 'login.link_password'|trans }}</a>
+        <br>
+        <a href="{{ path('app_simple_registration') }}">{{ 'login.link_registration'|trans }}</a>
     </div>
 {% endblock %}

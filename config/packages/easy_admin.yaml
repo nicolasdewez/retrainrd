@@ -70,31 +70,28 @@ easy_admin:
                 dql_filter: "entity.roles LIKE '%%ROLE_ADMIN%%'"
                 fields:
                     - { property: 'id', label: 'admin.user_admin.fields.id' }
-                    - { property: 'username', label: 'admin.user_admin.fields.username' }
+                    - { property: 'email', label: 'admin.user_admin.fields.email' }
                     - { property: 'firstName', label: 'admin.user_admin.fields.first_name' }
                     - { property: 'lastName', label: 'admin.user_admin.fields.last_name' }
-                    - { property: 'email', label: 'admin.user_admin.fields.email' }
                     - { property: 'enabled', type: 'boolean', label: 'admin.user_admin.fields.enabled' }
             show:
                 fields:
                     - { property: 'id', label: 'admin.user_admin.fields.id' }
-                    - { property: 'username', label: 'admin.user_admin.fields.username' }
+                    - { property: 'email', label: 'admin.user_admin.fields.email' }
                     - { property: 'firstName', label: 'admin.user_admin.fields.first_name' }
                     - { property: 'lastName', label: 'admin.user_admin.fields.last_name' }
-                    - { property: 'email', label: 'admin.user_admin.fields.email' }
                     - { property: 'enabled', label: 'admin.user_admin.fields.enabled' }
             new:
                 fields:
-                    - { property: 'username', label: 'admin.user_admin.fields.username' }
+                    - { property: 'email', label: 'admin.user_admin.fields.email' }
                     - { property: 'password', label: 'admin.user_admin.fields.password' }
                     - { property: 'firstName', label: 'admin.user_admin.fields.first_name' }
                     - { property: 'lastName', label: 'admin.user_admin.fields.last_name' }
-                    - { property: 'email', label: 'admin.user_admin.fields.email' }
                     - { property: 'enabled', label: 'admin.user_admin.fields.enabled' }
                 form_options: { validation_groups: ['admin_create'] }
             edit:
                 fields:
-                    - { property: 'username', , type_options: { attr: { readonly: true } }, label: 'admin.user_admin.fields.username' }
+                    - { property: 'email', , type_options: { attr: { readonly: true } }, label: 'admin.user_admin.fields.email' }
                     - { property: 'firstName', label: 'admin.user_admin.fields.first_name' }
                     - { property: 'lastName', label: 'admin.user_admin.fields.last_name' }
                     - { property: 'enabled', label: 'admin.user_admin.fields.enabled' }
@@ -110,15 +107,14 @@ easy_admin:
                 dql_filter: "entity.roles NOT LIKE '%%ROLE_ADMIN%%'"
                 fields:
                     - { property: 'id', label: 'admin.user.fields.id' }
-                    - { property: 'username', label: 'admin.user.fields.username' }
+                    - { property: 'email', label: 'admin.user.fields.email' }
                     - { property: 'firstName', label: 'admin.user.fields.first_name' }
                     - { property: 'lastName', label: 'admin.user.fields.last_name' }
-                    - { property: 'email', label: 'admin.user.fields.email' }
                     - { property: 'enabled', type: 'boolean', label: 'admin.user.fields.enabled' }
                     - { property: 'titleRegistrationState', label: 'admin.user.fields.registration_state' }
             form:
                 fields:
-                    - { property: 'username', type_options: { attr: { readonly: true } }, label: 'admin.user.fields.username' }
+                    - { property: 'email', type_options: { attr: { readonly: true } }, label: 'admin.user.fields.email' }
                     - { property: 'firstName', label: 'admin.user.fields.first_name' }
                     - { property: 'lastName', label: 'admin.user.fields.last_name' }
                     - { property: 'enabled', label: 'admin.user.fields.enabled' }

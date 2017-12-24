@@ -9,10 +9,6 @@
 
     <br>
 
-    {{ 'registration.username'|trans }} {{ user.username }}
-
-    <br>
-
     {{ 'registration.active'|trans }}
-    <a href="{{ url('app_active', {'registrationCode': user.registrationCode}) }}">{{ 'registration.active_link'|trans }}</a>
+    <a href="{{ url('app_simple_registration_active', {'registrationCode': user.registrationCode}) }}">{{ 'registration.active_link'|trans }}</a>
 {% endblock %}
