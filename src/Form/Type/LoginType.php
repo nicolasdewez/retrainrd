@@ -8,10 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 
 class LoginType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('_username', null, ['label' => 'form.login.email'])
@@ -19,9 +16,6 @@ class LoginType extends AbstractType
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix(): string
     {
         return '';

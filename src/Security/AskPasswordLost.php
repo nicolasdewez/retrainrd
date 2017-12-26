@@ -26,7 +26,7 @@ class AskPasswordLost
         $this->logger = $logger;
     }
 
-    public function execute(User $user)
+    public function execute(User $user): void
     {
         /** @var User $userInDatabase */
         $userInDatabase = $this->manager->getRepository(User::class)->findOneBy([

@@ -17,7 +17,7 @@ class UserHandler
         $this->manager = $manager;
     }
 
-    public function deserializeUserFromJson(JsonDeserializationVisitor $visitor, array $data, array $type, Context $context)
+    public function deserializeUserFromJson(JsonDeserializationVisitor $visitor, array $data, array $type, Context $context): User
     {
         return $this->manager->getRepository(User::class)->find($data['id']);
     }

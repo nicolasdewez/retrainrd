@@ -12,20 +12,14 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PasswordLostType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('email', EmailType::class, ['label' => 'form.password_lost.email'])
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'validation_groups' => [Group::USER_PASSWORD_LOST],

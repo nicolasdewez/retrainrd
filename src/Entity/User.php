@@ -11,10 +11,13 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Table(indexes={
- *     @ORM\Index(name="user_email", columns={"email"}),
- *     @ORM\Index(name="user_registration_code", columns={"registration_code"})
- * })
+ * @ORM\Table(
+ *     name="users",
+ *     indexes={
+ *         @ORM\Index(name="user_email", columns={"email"}),
+ *         @ORM\Index(name="user_registration_code", columns={"registration_code"})
+ *     }
+ * )
  *
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  *
@@ -27,7 +30,7 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"unsigned": true})
      *
      * @Serializer\Groups({
      *     "event_registration",
@@ -83,7 +86,7 @@ class User implements AdvancedUserInterface
     /**
      * @var array
      *
-     * @ORM\Column(type="array")
+     * @ORM\Column(type="simple_array")
      *
      * @Assert\NotBlank(groups={"edit"})
      * @Assert\Choice(callback={"App\Security\Role", "getRoles"}, strict=true, multiple=true, groups={"edit"})
@@ -287,48 +290,30 @@ class User implements AdvancedUserInterface
         $this->newPassword = $newPassword;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isAccountNonExpired()
+    public function isAccountNonExpired(): bool
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isAccountNonLocked()
+    public function isAccountNonLocked(): bool
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function isCredentialsNonExpired()
+    public function isCredentialsNonExpired(): bool
     {
         return true;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getSalt()
+    public function getSalt(): string
     {
         return '';
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function eraseCredentials()
+    public function eraseCredentials(): void
     {
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getUsername(): string
     {
         return $this->email;

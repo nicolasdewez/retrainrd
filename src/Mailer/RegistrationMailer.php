@@ -7,7 +7,7 @@ use App\Logger\Log;
 
 class RegistrationMailer extends AbstractMailer
 {
-    public function execute(User $user)
+    public function execute(User $user): void
     {
         $body = $this->twig->render(
             'mailing/registration.html.twig',

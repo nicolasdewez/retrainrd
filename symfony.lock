@@ -444,7 +444,7 @@
         "version": "v4.0.0"
     },
     "symfony/orm-pack": {
-        "version": "v1.0.4"
+        "version": "v1.0.5"
     },
     "symfony/polyfill-intl-icu": {
         "version": "v1.6.0"

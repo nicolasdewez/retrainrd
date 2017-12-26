@@ -40,7 +40,7 @@ class UpdateAccount
         $this->logger = $logger;
     }
 
-    public function execute(User $user)
+    public function execute(User $user): void
     {
         $this->logger->info(sprintf('[%s] User: %s', Log::SUBJECT_UPDATE_ACCOUNT, $user->getUsername()));
 

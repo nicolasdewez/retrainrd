@@ -17,10 +17,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class MyAccountType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('firstName', TextType::class, ['label' => 'form.my_account.first_name'])
@@ -41,10 +38,7 @@ class MyAccountType extends AbstractType
         ;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'validation_groups' => [Group::USER_MY_ACCOUNT],

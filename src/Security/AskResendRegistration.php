@@ -21,7 +21,7 @@ class AskResendRegistration
         $this->logger = $logger;
     }
 
-    public function execute(User $user)
+    public function execute(User $user): void
     {
         $this->logger->info(sprintf('[%s] Ask %s', Log::SUBJECT_RESEND_REGISTRATION, $user->getUsername()));
 

@@ -17,6 +17,7 @@ services:
         bind:
             $clientSNCF: '@csa_guzzle.client.sncf_api'
             $stateMachineRegistration: '@state_machine.registration'
+            $projectDir: '%kernel.project_dir%'
             $secret: '%env(RETRAINRD_APP_SECRET)%'
 
     App\:

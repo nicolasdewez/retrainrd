@@ -2,15 +2,24 @@
 
 namespace App\Command;
 
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 
-class LaunchConsumerCommand extends ContainerAwareCommand
+class LaunchConsumerCommand extends Command
 {
     const CONSUMER_LAUNCH_COMMAND = 'rabbitmq:consumer';
+
+    /** @var string */
+    private $projectDir;
+
+    public function __construct(string $projectDir)
+    {
+        parent::__construct();
+        $this->projectDir = $projectDir;
+    }
 
     /**
      * {@inheritdoc}
@@ -32,7 +41,7 @@ class LaunchConsumerCommand extends ContainerAwareCommand
         $number = $input->getArgument('number');
         $consumer = $input->getArgument('consumer');
 
-        $binPath = realpath(sprintf('%s/bin/console', $this->getContainer()->getParameter('kernel.project_dir')));
+        $binPath = realpath(sprintf('%s/bin/console', $this->projectDir));
 
         for ($i = 0; $i < $number; ++$i) {
             $process = new Process(sprintf('%s %s %s', $binPath, self::CONSUMER_LAUNCH_COMMAND, $consumer));

@@ -50,6 +50,7 @@ up: ## Builds, (re)creates, starts containers
 
 .PHONY: install
 install: ready ## Install application
+	@$(COMPOSE) exec $(DB) /usr/local/src/init.sh | $(call $(PRINT),INSTALL,$(COLOR_INSTALL))
 	@$(EXEC) $(APP) bin/install | $(call $(PRINT),INSTALL,$(COLOR_INSTALL))
 
 .PHONY: ready
@@ -57,7 +58,7 @@ ready: pretty ## Check if environment is ready
 	@echo "[READY]" | $(call $(PRINT),READY,$(COLOR_READY))
 	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(APP):9000 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
 	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(WEB):80 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
-	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(DB):3306 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
+	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(DB):5432 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
 	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(RABBITMQ):5672 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
 	@docker run --rm --net=$(NETWORK) -e TIMEOUT=30 -e TARGETS=$(MAILER):1025 ddn0/wait 2> /dev/null | $(call $(PRINT),READY,$(COLOR_READY))
 
@@ -220,12 +221,12 @@ app-reset: down app-clear ## Reset application
 
 
 .PHONY: db-connect
-db-connect: db-exec ## Run db cli (options: db_name [`travelbook`])
+db-connect: db-exec ## Run db cli (options: db_name [`retrainrd`])
 
 .PHONY: db-exec
-db-exec: ## Run db cli (options: db_name [`travelbook`])
+db-exec: ## Run db cli (options: db_name [`retrainrd`])
 	$(eval db_name ?= $(DB_NAME))
-#	@$(COMPOSE) exec $(DB) psql -U travelbook
+	@$(COMPOSE) exec $(DB) psql -U retrainrd
 
 .PHONY: db-diff
 db-diff: ## Run doctrine migrations diff

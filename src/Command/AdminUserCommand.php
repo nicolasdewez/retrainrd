@@ -33,7 +33,7 @@ class AdminUserCommand extends Command
         $this->manager = $manager;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this
             ->setName('app:admin:create')
@@ -43,7 +43,7 @@ class AdminUserCommand extends Command
         ;
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $user = $this->createUser($input);
         $errors = $this->validator->validate($user);

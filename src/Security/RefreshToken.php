@@ -16,7 +16,7 @@ class RefreshToken
         $this->tokenStorage = $tokenStorage;
     }
 
-    public function execute(UserInterface $user)
+    public function execute(UserInterface $user): void
     {
         $token = new UsernamePasswordToken($user, null, 'users', $user->getRoles());
         $this->tokenStorage->setToken($token);

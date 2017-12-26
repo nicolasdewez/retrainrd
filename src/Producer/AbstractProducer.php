@@ -25,7 +25,7 @@ abstract class AbstractProducer
         $this->logger = $logger;
     }
 
-    protected function logMessage(string $content, string $subject)
+    protected function logMessage(string $content, string $subject): void
     {
         $this->logger->info(sprintf('[%s] Message sent: %s', $subject, $content));
     }

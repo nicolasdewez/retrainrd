@@ -46,7 +46,7 @@ class UserPasswordLost
         $this->logger = $logger;
     }
 
-    public function execute(User $user)
+    public function execute(User $user): void
     {
         if (!$this->workflow->canApplyPasswordLost($user)) {
             $this->logger->error(sprintf(

@@ -7,11 +7,14 @@ parameters:
 
 doctrine:
     dbal:
-        # configure these for your database server
-        driver: 'pdo_mysql'
-        server_version: '5.7'
-        charset: utf8mb4
+        driver: 'pdo_pgsql'
+        server_version: '9.6'
         url: '%env(resolve:RETRAINRD_DATABASE_URL)%'
+        mapping_types:
+            point: point
+        types:
+            point: App\Doctrine\DBAL\Type\PointType
+
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore

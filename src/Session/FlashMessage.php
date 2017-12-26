@@ -20,7 +20,7 @@ class FlashMessage
         $this->translator = $translator;
     }
 
-    public function add(string $type, string $message, array $parameters = null)
+    public function add(string $type, string $message, array $parameters = null): void
     {
         if (null !== $parameters) {
             $message = $this->translator->trans($message, $parameters);

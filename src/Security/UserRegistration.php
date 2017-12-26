@@ -40,7 +40,7 @@ class UserRegistration
         $this->logger = $logger;
     }
 
-    public function execute(User $user)
+    public function execute(User $user): void
     {
         if (!$this->workflow->canApplyRegistration($user)) {
             $this->logger->error(sprintf(

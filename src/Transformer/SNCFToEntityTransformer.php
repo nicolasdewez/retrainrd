@@ -2,6 +2,7 @@
 
 namespace App\Transformer;
 
+use App\Doctrine\DBAL\Type\Point;
 use App\Entity\Stop;
 use App\Model\SNCF\StopArea;
 
@@ -16,8 +17,9 @@ class SNCFToEntityTransformer
         $stop->setCode($stopArea->getId());
         $stop->setName($stopArea->getName());
         $stop->setLabel($stopArea->getLabel());
-        $stop->setLatitude($stopArea->getCoord()['lat']);
-        $stop->setLongitude($stopArea->getCoord()['lon']);
+        $stop->setCoordinates(
+            new Point($stopArea->getCoord()['lat'], $stopArea->getCoord()['lon'])
+        );
 
         return $stop;
     }

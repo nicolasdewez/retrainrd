@@ -27,7 +27,7 @@ class UserAdminSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function initAdminFields(GenericEvent $event)
+    public function initAdminFields(GenericEvent $event): void
     {
         $entity = $event->getSubject();
         $entityName = $event->getArgument('request')->query->get('entity');

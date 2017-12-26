@@ -32,12 +32,6 @@ class SimpleRegistrationController
     /** @var FlashMessage */
     private $flashMessage;
 
-    /**
-     * @param FormFactoryInterface $formFactory
-     * @param Twig                 $twig
-     * @param RouterInterface      $router
-     * @param FlashMessage         $flashMessage
-     */
     public function __construct(
         FormFactoryInterface $formFactory,
         Twig $twig,

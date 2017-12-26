@@ -21,7 +21,7 @@ class CreateToken
         $this->session = $session;
     }
 
-    public function execute(User $user)
+    public function execute(User $user): void
     {
         $token = new UsernamePasswordToken($user, null, Token::FIREWALL_NAME, $user->getRoles());
         $this->tokenStorage->setToken($token);

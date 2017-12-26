@@ -30,7 +30,7 @@ class UserSubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function sendMail(GenericEvent $event)
+    public function sendMail(GenericEvent $event): void
     {
         $entity = $event->getSubject();
         $entityName = $event->getArgument('request')->query->get('entity');

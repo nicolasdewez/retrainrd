@@ -31,17 +31,17 @@ class RegistrationWorkflow
         return $this->stateMachine->can($user, Definition::TRANSITION_PASSWORD_LOST);
     }
 
-    public function applyRegistration(User $user)
+    public function applyRegistration(User $user): void
     {
         $this->stateMachine->apply($user, Definition::TRANSITION_REGISTRATION);
     }
 
-    public function applyActive(User $user)
+    public function applyActive(User $user): void
     {
         $this->stateMachine->apply($user, Definition::TRANSITION_ACTIVE);
     }
 
-    public function applyPasswordLost(User $user)
+    public function applyPasswordLost(User $user): void
     {
         $this->stateMachine->apply($user, Definition::TRANSITION_PASSWORD_LOST);
     }

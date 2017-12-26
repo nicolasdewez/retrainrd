@@ -2,9 +2,12 @@
 
 namespace App\Entity;
 
+use App\Doctrine\DBAL\Type\Point;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+
 /**
+ * @ORM\Table(name="stops")
  * @ORM\Entity(repositoryClass="App\Repository\StopRepository")
  */
 class Stop
@@ -49,110 +52,94 @@ class Stop
     private $label;
 
     /**
-     * @var float
+     * @var Point
      *
-     * @ORM\Column(type="float")
-     *
-     * @Assert\NotBlank
-     * @Assert\Type("float")
-     */
-    private $latitude;
-
-    /**
-     * @var float
-     *
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="point")
      *
      * @Assert\NotBlank
-     * @Assert\Type("float")
      */
-    private $longitude;
+    private $coordinates;
 
-    /**
-     * @return int
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string
-     */
     public function getCode(): ?string
     {
         return $this->code;
     }
 
-    /**
-     * @param string $code
-     */
     public function setCode(string $code): void
     {
         $this->code = $code;
     }
 
-    /**
-     * @return string
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
-    /**
-     * @param string $name
-     */
     public function setName(string $name): void
     {
         $this->name = $name;
     }
 
-    /**
-     * @return string
-     */
     public function getLabel(): ?string
     {
         return $this->label;
     }
 
-    /**
-     * @param string $label
-     */
     public function setLabel(string $label): void
     {
         $this->label = $label;
     }
 
-    /**
-     * @return float
-     */
+    public function getCoordinates(): Point
+    {
+        return $this->coordinates;
+    }
+
+    public function setCoordinates(Point $coordinates): void
+    {
+        $this->coordinates = $coordinates;
+    }
+
     public function getLatitude(): ?float
     {
-        return $this->latitude;
+        if (null === $this->coordinates) {
+            return null;
+        }
+
+        return $this->coordinates->getLatitude();
     }
 
-    /**
-     * @param float $latitude
-     */
     public function setLatitude(float $latitude): void
     {
-        $this->latitude = $latitude;
+        if (null === $this->coordinates) {
+            $this->coordinates = new Point($latitude, 0);
+            return;
+        }
+
+        $this->coordinates->setLatitude($latitude);
     }
 
-    /**
-     * @return float
-     */
-    public function getLongitude(): ?float
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * @param float $longitude
-     */
     public function setLongitude(float $longitude): void
     {
-        $this->longitude = $longitude;
+        if (null === $this->coordinates) {
+            $this->coordinates = new Point(0, $longitude);
+            return;
+        }
+
+        $this->coordinates->setLongitude($longitude);
+    }
+
+    public function getLongitude(): ?float
+    {
+        if (null === $this->coordinates) {
+            return null;
+        }
+
+        return $this->coordinates->getLongitude();
     }
 }

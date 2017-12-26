@@ -82,9 +82,6 @@ class CheckRegistrationCode
         return true;
     }
 
-    /**
-     * @return User
-     */
     public function getUser(): ?User
     {
         return $this->user;

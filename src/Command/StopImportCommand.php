@@ -34,7 +34,7 @@ class StopImportCommand extends Command
         $this->transformer = $transformer;
     }
 
-    public function configure()
+    public function configure(): void
     {
         $this
             ->setName('app:stop:import')
@@ -42,7 +42,7 @@ class StopImportCommand extends Command
         ;
     }
 
-    public function execute(InputInterface $input, OutputInterface $output)
+    public function execute(InputInterface $input, OutputInterface $output): void
     {
         $output->writeln('<info>Call api "get stop areas"</info>');
         $stopAreas = $this->client->getStops();

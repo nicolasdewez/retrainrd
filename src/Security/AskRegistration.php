@@ -26,7 +26,7 @@ class AskRegistration
         $this->logger = $logger;
     }
 
-    public function execute(User $user)
+    public function execute(User $user): void
     {
         $this->logger->info(sprintf('[%s] Ask %s', Log::SUBJECT_REGISTRATION, $user->getUsername()));
 

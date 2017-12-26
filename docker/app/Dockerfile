@@ -15,7 +15,7 @@ RUN apt-get update && \
         zip \
         pcntl \
         pdo \
-        pdo_mysql && \
+        pdo_pgsql && \
     pecl install apcu-5.1.3 && \
     docker-php-ext-enable apcu && \
     echo "date.timezone = Europe/Paris" >> /usr/local/etc/php/conf.d/symfony.ini && \

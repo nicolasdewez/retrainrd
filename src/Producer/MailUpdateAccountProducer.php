@@ -9,7 +9,7 @@ use App\Serializer\Group;
 
 class MailUpdateAccountProducer extends AbstractProducer
 {
-    public function execute(User $user)
+    public function execute(User $user): void
     {
         $this->logger->info(sprintf('[%s] Publish message', Log::SUBJECT_UPDATE_ACCOUNT));
 

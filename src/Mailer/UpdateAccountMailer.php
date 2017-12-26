@@ -7,7 +7,7 @@ use App\Logger\Log;
 
 class UpdateAccountMailer extends AbstractMailer
 {
-    public function execute(User $user)
+    public function execute(User $user): void
     {
         $body = $this->twig->render(
             'mailing/update-account.html.twig',
