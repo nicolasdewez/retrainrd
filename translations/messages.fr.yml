@@ -1,12 +1,12 @@
-workflow:
-    registration:
-        created: Créée
-        registered: En-cours
-        activated: Terminée
+#workflow:
+#    registration:
+#        created: Créée
+#        registered: En-cours
+#        activated: Terminée
 
-role:
-    user: Utilisateur
-    admin: Administrateur
+#role:
+#    user: Utilisateur
+#    admin: Administrateur
 
 form:
     save: Enregistrer

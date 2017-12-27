@@ -31,7 +31,7 @@ class DisableAccount
 
     public function execute(User $user): void
     {
-        $this->logger->info(sprintf('[%s] User: %s', Log::SUBJECT_DISABLE_ACCOUNT, $user->getUsername()));
+        $this->logger->info(sprintf('[%s] User: %s', Log::SUBJECT_DISABLE_ACCOUNT, $user->getEmail()));
 
         $user->setEnabled(false);
 

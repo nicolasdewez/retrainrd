@@ -36,7 +36,7 @@ class UserAdminSubscriber implements EventSubscriberInterface
             return;
         }
 
-        /** @var User $entity */
+        /* @var User $entity */
         $entity->setPassword($this->encoder->encodePassword($entity, $entity->getPassword()));
         $entity->setRegistrationState(RegistrationDefinitionWorkflow::PLACE_ACTIVATED);
         $entity->setRegistrationCode('');

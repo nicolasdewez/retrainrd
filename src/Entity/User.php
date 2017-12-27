@@ -47,9 +47,9 @@ class User implements AdvancedUserInterface
      *
      * @ORM\Column(unique=true)
      *
-     * @Assert\NotBlank(groups={"my_account", "registration", "admin_create"})
-     * @Assert\Length(min=6, max=255, groups={"my_account", "registration", "admin_create"})
-     * @Assert\Email(groups={"my_account", "registration", "admin_create"})
+     * @Assert\NotBlank(groups={"registration", "admin_create"})
+     * @Assert\Length(min=6, max=255, groups={"registration", "admin_create"})
+     * @Assert\Email(groups={"registration", "admin_create"})
      */
     private $email;
 
@@ -285,7 +285,7 @@ class User implements AdvancedUserInterface
         return $this->newPassword;
     }
 
-    public function setNewPassword(string $newPassword)
+    public function setNewPassword(string $newPassword): void
     {
         $this->newPassword = $newPassword;
     }

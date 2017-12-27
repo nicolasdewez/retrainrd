@@ -1,0 +1,35 @@
+default:
+    suites:
+        default:
+            contexts:
+                - Behat\MinkExtension\Context\MinkContext
+                - Behatch\Context\JsonContext
+                - Behatch\Context\RestContext
+                - Knp\FriendlyContexts\Context\ApiContext
+                - Knp\FriendlyContexts\Context\EntityContext
+                - CommandContext
+                - QueuingContext:
+                    - "@kernel"
+                - MailCatcherContext
+
+    extensions:
+        Alex\MailCatcher\Behat\MailCatcherExtension\Extension:
+            url: http://mailer.retrainrd:1080
+            purge_before_scenario: true
+
+        Behat\MinkExtension:
+            base_url: ~
+            sessions:
+                default:
+                    symfony2: ~
+
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+                debug: true
+                env: "test"
+
+        Behatch\Extension: ~
+
+        Knp\FriendlyContexts\Extension: ~

@@ -3,17 +3,24 @@
 namespace App\Command;
 
 use OldSound\RabbitMqBundle\RabbitMq\Producer;
-use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class TerminateConsumerCommand extends ContainerAwareCommand
+class TerminateConsumerCommand extends Command
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function configure()
+    /** @var ContainerInterface */
+    private $container;
+
+    public function __construct(ContainerInterface $container)
+    {
+        parent::__construct();
+        $this->container = $container;
+    }
+
+    public function configure(): void
     {
         $this
             ->setName('app:consumer:terminate')
@@ -21,20 +28,21 @@ class TerminateConsumerCommand extends ContainerAwareCommand
             ->setHelp('Terminate all consumers');
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $consumer = $input->getArgument('consumer');
         $producerName = sprintf('old_sound_rabbit_mq.%s_producer', $consumer);
-        if (!$this->getContainer()->has($producerName)) {
-            return $output->writeln(sprintf('<error>Consumer %s not found or its producer</error>', $consumer));
+        if (!$this->container->has($producerName)) {
+            $output->writeln(sprintf('<error>Consumer %s not found or its producer</error>', $consumer));
+
+            return;
         }
 
         $pids = $this->getConsumerPids($consumer);
         if (0 === count($pids)) {
-            return $output->writeln('<comment>No consumer process found</comment>');
+            $output->writeln('<comment>No consumer process found</comment>');
+
+            return;
         }
 
         foreach ($pids as $pid) {
@@ -46,7 +54,7 @@ class TerminateConsumerCommand extends ContainerAwareCommand
         }
 
         /** @var Producer $producer */
-        $producer = $this->getContainer()->get($producerName);
+        $producer = $this->container->get($producerName);
         for ($i = 0; $i < count($pids); ++$i) {
             $producer->publish(serialize([
                 '_ping' => true,
@@ -57,27 +65,20 @@ class TerminateConsumerCommand extends ContainerAwareCommand
         sleep(1);
         $stillAliveConsumers = $this->getConsumerPids($consumer);
         if (0 !== count($stillAliveConsumers)) {
-            return $output->writeln(sprintf(
+            $output->writeln(sprintf(
                 '<error>%d consumer processes seems to be found</error>',
                 count($stillAliveConsumers)
             ));
+
+            return;
         }
 
         $output->writeln(sprintf(
             '<info>%d consumer were terminated</info>',
             count($pids)
         ));
-
-        return;
     }
 
-    /**
-     * Return proccesses ID of consumer.
-     *
-     * @param string $consumer
-     *
-     * @return array
-     */
     private function getConsumerPids(string $consumer): array
     {
         $pids = [];

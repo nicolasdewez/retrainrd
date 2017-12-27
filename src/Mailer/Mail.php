@@ -11,9 +11,9 @@ final class Mail
 
     const CONTENT_TYPE = 'text/html';
 
-    const SUBJECT_REGISTRATION = 'registration.subject';
-    const SUBJECT_PASSWORD_LOST = 'password_lost.subject';
-    const SUBJECT_UPDATE_ACCOUNT = 'update_account.subject';
-    const SUBJECT_ENABLE_ACCOUNT = 'enable_account.subject';
-    const SUBJECT_DISABLE_ACCOUNT = 'disable_account.subject';
+    const SUBJECT_REGISTRATION = '[Retrainrd] Inscription';
+    const SUBJECT_PASSWORD_LOST = '[Retrainrd] Mot de passe perdu';
+    const SUBJECT_UPDATE_ACCOUNT = '[Retrainrd] Mise à jour de votre compte';
+    const SUBJECT_ENABLE_ACCOUNT = '[Retrainrd] Réactivation de votre compte';
+    const SUBJECT_DISABLE_ACCOUNT = '[Retrainrd] Désactivation de votre compte';
 }

@@ -14,7 +14,7 @@ class ActiveUser
     /** @var EntityManagerInterface */
     private $manager;
 
-    /**  @var UserPasswordEncoderInterface */
+    /** @var UserPasswordEncoderInterface */
     private $encoder;
 
     /** @var RegistrationWorkflow */
@@ -37,7 +37,7 @@ class ActiveUser
 
     public function execute(User $user): void
     {
-        $this->logger->info(sprintf('[%s] User: %s', Log::SUBJECT_ACTIVE, $user->getUsername()));
+        $this->logger->info(sprintf('[%s] User: %s', Log::SUBJECT_ACTIVE, $user->getEmail()));
 
         $user->setPassword($this->encoder->encodePassword($user, $user->getNewPassword()));
         $user->setEnabled(true);

@@ -10,8 +10,8 @@ class SNCFToEntityTransformer
 {
     public function execute(StopArea $stopArea, ?Stop $stop): Stop
     {
-        if (null === $stop)  {
-          $stop = new Stop();
+        if (null === $stop) {
+            $stop = new Stop();
         }
 
         $stop->setCode($stopArea->getId());

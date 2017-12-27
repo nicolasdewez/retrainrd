@@ -12,14 +12,14 @@ final class RegistrationDefinitionWorkflow
     const TRANSITION_ACTIVE = 'active';
     const TRANSITION_PASSWORD_LOST = 'password_lost';
 
-    const TITLE_PLACE_CREATED = 'Créé';
-    const TITLE_PLACE_REGISTERED = 'Enregistré';
-    const TITLE_PLACE_ACTIVATED = 'Activé';
+    const PLACE_TITLE_CREATED = 'Créé';
+    const PLACE_TITLE_REGISTERED = 'Enregistré';
+    const PLACE_TITLE_ACTIVATED = 'Activé';
 
     const TITLES_PLACES = [
-        self::PLACE_CREATED => self::TITLE_PLACE_CREATED,
-        self::PLACE_REGISTERED => self::TITLE_PLACE_REGISTERED,
-        self::PLACE_ACTIVATED => self::TITLE_PLACE_ACTIVATED,
+        self::PLACE_CREATED => self::PLACE_TITLE_CREATED,
+        self::PLACE_REGISTERED => self::PLACE_TITLE_REGISTERED,
+        self::PLACE_ACTIVATED => self::PLACE_TITLE_ACTIVATED,
     ];
 
     public static function getTitleByPlace(string $place): ?string

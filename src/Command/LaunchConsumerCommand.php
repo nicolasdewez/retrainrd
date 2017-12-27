@@ -10,8 +10,6 @@ use Symfony\Component\Process\Process;
 
 class LaunchConsumerCommand extends Command
 {
-    const CONSUMER_LAUNCH_COMMAND = 'rabbitmq:consumer';
-
     /** @var string */
     private $projectDir;
 
@@ -44,7 +42,7 @@ class LaunchConsumerCommand extends Command
         $binPath = realpath(sprintf('%s/bin/console', $this->projectDir));
 
         for ($i = 0; $i < $number; ++$i) {
-            $process = new Process(sprintf('%s %s %s', $binPath, self::CONSUMER_LAUNCH_COMMAND, $consumer));
+            $process = new Process(sprintf('%s rabbitmq:consumer %s', $binPath, $consumer));
             $process->start();
         }
 

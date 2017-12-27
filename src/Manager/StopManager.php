@@ -31,7 +31,7 @@ class StopManager
     public function saveStops(array $stops): void
     {
         $nb = 0;
-        foreach ($stops as $stop)  {
+        foreach ($stops as $stop) {
             ++$nb;
 
             $this->persist($stop);

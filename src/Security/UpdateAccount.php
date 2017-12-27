@@ -42,7 +42,7 @@ class UpdateAccount
 
     public function execute(User $user): void
     {
-        $this->logger->info(sprintf('[%s] User: %s', Log::SUBJECT_UPDATE_ACCOUNT, $user->getUsername()));
+        $this->logger->info(sprintf('[%s] User: %s', Log::SUBJECT_UPDATE_ACCOUNT, $user->getEmail()));
 
         if (null !== $user->getNewPassword()) {
             $user->setPassword($this->encoder->encodePassword($user, $user->getNewPassword()));

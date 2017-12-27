@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Doctrine\DBAL\Type\Point;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -118,6 +119,7 @@ class Stop
     {
         if (null === $this->coordinates) {
             $this->coordinates = new Point($latitude, 0);
+
             return;
         }
 
@@ -128,6 +130,7 @@ class Stop
     {
         if (null === $this->coordinates) {
             $this->coordinates = new Point(0, $longitude);
+
             return;
         }
 

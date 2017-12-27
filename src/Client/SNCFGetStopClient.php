@@ -30,15 +30,15 @@ class SNCFGetStopClient
     public function getStops(): array
     {
         $stopAreas = [];
-
         $page = 0;
+
         do {
             $uri = sprintf(self::URI_LIST, $page);
             $response = $this->client->get($uri);
 
             /** @var StopAreasResponse $stopAreasResponse */
             $stopAreasResponse = $this->serializer->deserialize(
-                (string)$response->getBody(),
+                (string) $response->getBody(),
                 StopAreasResponse::class,
                 Format::JSON
             );
@@ -47,7 +47,6 @@ class SNCFGetStopClient
             $linkNext = $stopAreasResponse->getLinkNext();
 
             ++$page;
-
         } while (null !== $linkNext);
 
         return $stopAreas;

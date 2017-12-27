@@ -49,16 +49,16 @@ class CheckRegistrationCode
         }
 
         $code = base64_decode($code);
-        list($codeUsername, $timestamp, $codeMd5) = explode('-', $code);
+        list($email, $timestamp, $codeMd5) = explode('-', $code);
 
-        // Username in database and code ko
-        if ($codeUsername !== $user->getUsername()) {
+        // Email in database and code ko
+        if ($email !== $user->getEmail()) {
             $this->logger->error(sprintf('[%s] Invalid registration code: user not valid (%s)', Log::SUBJECT_ACTIVE, $code));
 
             return false;
         }
 
-        $md5 = md5(sprintf('%s.%s', $codeUsername, $this->secret));
+        $md5 = md5(sprintf('%s.%s', $email, $this->secret));
         if ($md5 !== $codeMd5) {
             $this->logger->error(sprintf('[%s] Invalid registration code: md5 not valid (%s)', Log::SUBJECT_ACTIVE, $code));
 

@@ -169,7 +169,7 @@ app-ass-comp: ## Compile assets
 
 .PHONY: app-php-cs
 app-php-cs: ## Run php-cs-fixer to fix
-	@$(EXEC) $(APP) vendor/bin/php-cs-fixer fix -v --diff --config=.php_cs.dist
+	@$(EXEC) $(APP) vendor/bin/php-cs-fixer fix -v --diff src
 
 .PHONY: app-phpstan
 app-phpstan: ## Run phpstan
@@ -243,7 +243,7 @@ db-validate: ## Run doctrine validation
 
 
 .PHONY: tests
-tests: tests-phpunit ## Run all tests
+tests: tests-unit tests-funct ## Run all tests
 
 .PHONY: tests-unit
 tests-unit: tests-phpunit ## Run phpunit test suite (options: coverage [true])
@@ -256,6 +256,12 @@ tests-phpunit: app-clear ## Run phpunit test suite (options: coverage [true])
 		@$(EXEC) $(APP) vendor/bin/phpunit
     endif
 
+.PHONY: tests-funct
+tests-funct: tests-behat ## Run behat tests suite
+
+.PHONY: tests-behat
+tests-behat: app-clear ## Run behat tests suite
+	@$(EXEC) $(APP) vendor/bin/behat
 
 
 .PHONY: anal-phpmetrics

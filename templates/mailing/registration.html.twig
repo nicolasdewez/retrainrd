@@ -1,14 +1,12 @@
 {% extends 'mailing/base.html.twig' %}
 
-{% trans_default_domain 'mails' %}
-
 {% block body %}
-    <h2>{{ 'registration.title'|trans }}</h2>
+    <h2>Inscription</h2>
 
-    {{ 'registration.body'|trans }}
+    Nous avons le plaisir de vous confirmer la création de votre compte.
 
     <br>
 
-    {{ 'registration.active'|trans }}
-    <a href="{{ url('app_simple_registration_active', {'registrationCode': user.registrationCode}) }}">{{ 'registration.active_link'|trans }}</a>
+    Pour activer votre compte, merci de cliquer sur ce lien :
+    <a href="{{ url('app_simple_registration_active', {'registrationCode': user.registrationCode}) }}">ici</a>
 {% endblock %}

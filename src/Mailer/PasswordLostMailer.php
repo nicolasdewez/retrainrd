@@ -12,7 +12,7 @@ class PasswordLostMailer extends AbstractMailer
         $body = $this->twig->render(
             'mailing/password-lost.html.twig',
             [
-                'user' => $user
+                'user' => $user,
             ]
         );
 

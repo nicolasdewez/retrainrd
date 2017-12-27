@@ -17,3 +17,7 @@
 /build/
 /node_modules/
 /public/build/
+
+###> behat/symfony2-extension ###
+behat.yml
+###< behat/symfony2-extension ###

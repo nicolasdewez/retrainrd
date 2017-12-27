@@ -21,6 +21,10 @@ security:
             pattern: ^/password-lost$
             anonymous: true
 
+        home:
+            pattern: ^/$
+            anonymous: true
+
         connection:
             pattern: ^/connect(/.*)?
             anonymous: true

@@ -28,7 +28,7 @@ class AskRegistration
 
     public function execute(User $user): void
     {
-        $this->logger->info(sprintf('[%s] Ask %s', Log::SUBJECT_REGISTRATION, $user->getUsername()));
+        $this->logger->info(sprintf('[%s] Ask %s', Log::SUBJECT_REGISTRATION, $user->getEmail()));
 
         // Set default values
         $user->setPassword('');

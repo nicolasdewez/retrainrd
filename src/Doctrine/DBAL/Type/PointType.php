@@ -22,7 +22,7 @@ class PointType extends Type
         $latitude = $coordinates['latitude'] ?? 0;
         $longitude = $coordinates['longitude'] ?? 0;
 
-        return new Point((float)$latitude, (float)$longitude);
+        return new Point((float) $latitude, (float) $longitude);
     }
 
     public function convertToDatabaseValue($value, AbstractPlatform $platform): string

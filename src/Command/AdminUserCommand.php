@@ -46,7 +46,7 @@ class AdminUserCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output): void
     {
         $user = $this->createUser($input);
-        $errors = $this->validator->validate($user);
+        $errors = $this->validator->validate($user, null, ['admin_create']);
 
         if (count($errors)) {
             $output->writeln('<error>User is not valid.</error>');
@@ -67,8 +67,8 @@ class AdminUserCommand extends Command
         $user->setEmail($input->getArgument('email'));
         $user->setRoles([Role::ADMIN]);
         $user->setPassword($input->getArgument('password'));
-        $user->setFirstName('');
-        $user->setLastName('');
+        $user->setFirstName('admin');
+        $user->setLastName('admin');
         $user->setRegistrationCode('');
         $user->setRegistrationState(RegistrationDefinitionWorkflow::PLACE_ACTIVATED);
         $user->setEnabled(true);

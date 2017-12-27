@@ -8,7 +8,6 @@ use App\Mailer\PasswordLostMailer;
 use App\Workflow\RegistrationWorkflow;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserPasswordLost
 {
@@ -17,9 +16,6 @@ class UserPasswordLost
 
     /** @var EntityManagerInterface */
     private $manager;
-
-    /** @var UserPasswordEncoderInterface */
-    private $encoder;
 
     /** @var GenerateRegistrationCode */
     private $generateRegistrationCode;
@@ -33,14 +29,12 @@ class UserPasswordLost
     public function __construct(
         RegistrationWorkflow $workflow,
         EntityManagerInterface $manager,
-        UserPasswordEncoderInterface $encoder,
         GenerateRegistrationCode $generateRegistrationCode,
         PasswordLostMailer $mailer,
         LoggerInterface $logger
     ) {
         $this->workflow = $workflow;
         $this->manager = $manager;
-        $this->encoder = $encoder;
         $this->generateRegistrationCode = $generateRegistrationCode;
         $this->mailer = $mailer;
         $this->logger = $logger;

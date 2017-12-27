@@ -19,18 +19,18 @@ class GenerateRegistrationCode
         $this->secret = $secret;
     }
 
-    public function execute(string $username): string
+    public function execute(string $email): string
     {
         $this->logger->info(sprintf(
-            '[%s] Generate registration code for username: %s',
+            '[%s] Generate registration code for email: %s',
             Log::SUBJECT_REGISTRATION,
-            $username
+            $email
         ));
 
         $validity = (new \DateTime())->add(new \DateInterval(sprintf('PT%dH', RegistrationCode::VALIDITY)));
-        $md5 = md5(sprintf('%s.%s', $username, $this->secret));
+        $md5 = md5(sprintf('%s.%s', $email, $this->secret));
 
-        $registrationCode = sprintf('%s-%d-%s', $username, $validity->getTimestamp(), $md5);
+        $registrationCode = sprintf('%s-%d-%s', $email, $validity->getTimestamp(), $md5);
 
         return base64_encode($registrationCode);
     }

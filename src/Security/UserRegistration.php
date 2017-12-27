@@ -51,7 +51,7 @@ class UserRegistration
             return;
         }
 
-        $user->setRegistrationCode($this->generateRegistrationCode->execute($user->getUsername()));
+        $user->setRegistrationCode($this->generateRegistrationCode->execute($user->getEmail()));
 
         $this->workflow->applyRegistration($user);
 
