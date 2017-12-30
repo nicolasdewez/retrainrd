@@ -19,14 +19,6 @@ class FlashMessageTest extends TestCase
             ->with('type', 'new message')
         ;
 
-        $translator = $this->createMock(TranslatorInterface::class);
-        $translator
-            ->expects($this->once())
-            ->method('trans')
-            ->with('message', ['param1'])
-            ->willReturn('new message')
-        ;
-
         $session = $this->createMock(Session::class);
         $session
             ->expects($this->once())
@@ -34,7 +26,7 @@ class FlashMessageTest extends TestCase
             ->willReturn($flashBag)
         ;
 
-        $flashMessage = new FlashMessage($session, $translator);
-        $flashMessage->add('type', 'message', ['param1']);
+        $flashMessage = new FlashMessage($session);
+        $flashMessage->add('type', 'new message');
     }
 }

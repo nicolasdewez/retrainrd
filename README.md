@@ -15,7 +15,6 @@ To Change in composer.json symfony version: 3.4 -> 4.0
 
 * Resend registration mail
 * Change config to "Sf application"
-* Delete useless translations (only keep admin, forms)
 
 
 ## Tests

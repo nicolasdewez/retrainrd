@@ -17,13 +17,14 @@ bin/console app:admin:create
 
 ## Options
 
-No options.
+* --super-admin / -s: create a super admin
 
 
-## Example
+## Examples
 
 ```bash
 bin/console app:admin:create ndewez@retrainrd.com ndewez
+bin/console app:admin:create ndewez@retrainrd.com ndewez -s
 ```
 
 ### Display on success

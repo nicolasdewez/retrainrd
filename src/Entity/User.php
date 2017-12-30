@@ -241,7 +241,7 @@ class User implements AdvancedUserInterface
         }
 
         // Delete role
-        $roles = array_filter($this->roles, function($role) {
+        $roles = array_filter($this->roles, function ($role) {
             return Role::SUPER_ADMIN !== $role;
         });
 

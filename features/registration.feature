@@ -31,7 +31,7 @@ Feature:
         When I open mail with subject "[Retrainrd] Inscription"
         Then I should see "Pour activer votre compte, merci de cliquer sur ce lien" in mail
         When I follow "ici" in mail
-        Then I should see "Définition du mot de passe"
+        Then I should see "Choisissez votre mot de passe"
         When I fill in "active_user_newPassword_first" with "password1"
         And I fill in "active_user_newPassword_second" with "password1"
         And I press "Enregistrer"
@@ -43,4 +43,4 @@ Feature:
         And I fill in "_password" with "password1"
         And I press "Se connecter"
         # To change it
-        And I should see "home.title"
+        And I should see "Home"

@@ -55,7 +55,10 @@ class SimpleRegistrationController
         if ($form->isSubmitted() && $form->isValid()) {
             $askRegistration->execute($form->getData());
 
-            $this->flashMessage->add(Flash::TYPE_NOTICE, 'registration.ok');
+            $this->flashMessage->add(
+                Flash::TYPE_NOTICE,
+                'Votre demande d\'inscription est en cours. Un email va être envoyé d\'ici quelques minutes.'
+            );
 
             return new RedirectResponse($this->router->generate('app_connection'));
         }
@@ -82,7 +85,10 @@ class SimpleRegistrationController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $activeUser->execute($user);
-            $this->flashMessage->add(Flash::TYPE_NOTICE, 'active.ok');
+            $this->flashMessage->add(
+                Flash::TYPE_NOTICE,
+                'Votre mot de passe a été défini. Vous pouvez maintenant utiliser l\'email et le mot de passe que vous avez choisis pour vous connecter.'
+            );
 
             return new RedirectResponse($this->router->generate('app_connection'));
         }

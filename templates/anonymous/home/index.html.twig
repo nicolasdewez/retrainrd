@@ -2,19 +2,19 @@
 
 {% block body %}
 
-    <h2>{{ 'anonymous.home.title'|trans }}</h2>
+    <h2>Bienvenue !</h2>
 
-    <p><strong>{{ 'anonymous.home.sub_title'|trans }}</strong></p>
+    <p><strong>Retrainrd est une application permettant de marquer les retards et différents problèmes rencontrés lors de vos voyages SNCF.</strong></p>
 
     <div class="col-md-4">
 
         <div class="panel panel-primary">
-            <div class="panel-heading"><strong>{{ 'anonymous.home.registration_title'|trans }}</strong></div>
+            <div class="panel-heading"><strong>Inscription</strong></div>
 
             <div class="panel-body">
-                <p>{{ 'anonymous.home.registration_body_1'|trans }} <a href="{{ path('app_simple_registration') }}" title="{{ 'anonymous.home.registration_title'|trans }}">{{ 'anonymous.home.registration_body_2'|trans }}</a></p>
-                <p>{{ 'anonymous.home.registration_body_3'|trans }}</p>
-                <p>{{ 'anonymous.home.registration_body_4'|trans }}</p>
+                <p>Vous pouvez vous inscrire en suivant <a href="{{ path('app_simple_registration') }}" title="Inscription">ce lien.</a></p>
+                <p>Quelques informations vous seront demandées.</p>
+                <p>Ensuite vous pourrez profiter pleinement de toutes les fonctionnalités.</p>
             </div>
         </div>
 
@@ -22,10 +22,10 @@
     <div class="col-md-4">
 
         <div class="panel panel-primary">
-            <div class="panel-heading"><strong>{{ 'anonymous.home.connection_title'|trans }}</strong></div>
+            <div class="panel-heading"><strong>Connexion</strong></div>
 
             <div class="panel-body">
-                <p>{{ 'anonymous.home.connection_body_1'|trans }} <a href="{{ path('app_connection') }}" title="{{ 'anonymous.home.connection_title'|trans }}">{{ 'anonymous.home.connection_body_2'|trans }}</a></p>
+                <p>Vous avez déjà un compte ? Alors cliquez <a href="{{ path('app_connection') }}" title="Connexion">ici</a></p>
             </div>
         </div>
 
@@ -33,11 +33,11 @@
     <div class="col-md-4">
 
         <div class="panel panel-primary">
-            <div class="panel-heading"><strong>{{ 'anonymous.home.password_lost_title'|trans }}</strong></div>
+            <div class="panel-heading"><strong>Mot de passe perdu</strong></div>
 
             <div class="panel-body">
-                <p>{{ 'anonymous.home.password_lost_body_1'|trans }}</p>
-                <p>{{ 'anonymous.home.password_lost_body_2'|trans }} <a href="{{ path('app_account_password_lost') }}" title="{{ 'anonymous.home.password_lost_title'|trans }}">{{ 'anonymous.home.password_lost_body_3'|trans }}</a>{{ 'anonymous.home.password_lost_body_4'|trans }}</p>
+                <p>Si vous avez perdu votre mot de passe, pas de panique !</p>
+                <p>Suivez <a href="{{ path('app_account_password_lost') }}" title="Mot de passe perdu">ce lien</a>, remplissez le formulaire et un nouveau mot de passe sera créé.</p>
             </div>
         </div>
 

@@ -56,7 +56,10 @@ class AccountController
         if ($form->isSubmitted() && $form->isValid()) {
             $askPasswordLost->execute($form->getData());
 
-            $this->flashMessage->add(Flash::TYPE_NOTICE, 'password_lost.ok');
+            $this->flashMessage->add(
+                Flash::TYPE_NOTICE,
+                'Votre demande de réinitialisation de mot de passe est en cours. Un email va être envoyé d\'ici quelques minutes.'
+            );
 
             return new RedirectResponse($this->router->generate('app_connection'));
         }
@@ -79,7 +82,7 @@ class AccountController
         if ($form->isSubmitted() && $form->isValid()) {
             $updateAccount->execute($user);
 
-            $this->flashMessage->add(Flash::TYPE_NOTICE, 'my_account.ok');
+            $this->flashMessage->add(Flash::TYPE_NOTICE, 'Vos informations personnelles ont été mises à jour.');
 
             return new RedirectResponse($this->router->generate('app_account_my_account'));
         }

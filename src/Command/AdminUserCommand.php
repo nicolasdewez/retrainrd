@@ -9,6 +9,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -40,6 +41,7 @@ class AdminUserCommand extends Command
             ->setDescription('Create user')
             ->addArgument('email', InputArgument::REQUIRED, 'Email')
             ->addArgument('password', InputArgument::REQUIRED, 'Password (not encoded)')
+            ->addOption('super-admin', 's', InputOption::VALUE_NONE, 'Create a super admin')
         ;
     }
 
@@ -66,6 +68,7 @@ class AdminUserCommand extends Command
         $user = new User();
         $user->setEmail($input->getArgument('email'));
         $user->setRoles([Role::ADMIN]);
+        $user->setSuperAdmin($input->getOption('super-admin'));
         $user->setPassword($input->getArgument('password'));
         $user->setFirstName('admin');
         $user->setLastName('admin');

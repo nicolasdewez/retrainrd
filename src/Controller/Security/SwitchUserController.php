@@ -26,7 +26,7 @@ class SwitchUserController
     /** @var FormFactoryInterface */
     private $formFactory;
 
-    /** @var RouterInterface  */
+    /** @var RouterInterface */
     private $router;
 
     /** @var Twig */
@@ -55,7 +55,7 @@ class SwitchUserController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $email = $switchUser->getEmail();
-            $this->flashMessage->add(Flash::TYPE_NOTICE, sprintf('Connexion au compte %s effectuée',  $email));
+            $this->flashMessage->add(Flash::TYPE_NOTICE, sprintf('Connexion au compte %s effectuée', $email));
 
             return new RedirectResponse($this->router->generate('app_user_home', [self::PARAM_SWITCH => $email]));
         }

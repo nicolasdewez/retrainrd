@@ -4,8 +4,6 @@ namespace App\Mailer;
 
 final class Mail
 {
-    const TRANSLATOR_DOMAIN = 'mails';
-
     const SENDER = 'contact@retrainrd.com';
     const REPLY_TO = 'contact@retrainrd.com';
 

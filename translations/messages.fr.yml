@@ -1,13 +1,3 @@
-#workflow:
-#    registration:
-#        created: Créée
-#        registered: En-cours
-#        activated: Terminée
-
-#role:
-#    user: Utilisateur
-#    admin: Administrateur
-
 form:
     save: Enregistrer
     registration:
@@ -32,48 +22,6 @@ form:
         new_password_2: Répêter le mot de passe
     switch_user:
         email: Email
-
-registration:
-    title: Inscription
-    link_login: J'ai déjà un compte.
-    ok: Votre demande d'inscription est en cours. Un email va être envoyé d'ici quelques minutes.
-
-active:
-    title: Définition du mot de passe
-    ok: Votre mot de passe a été défini. Vous pouvez maintenant utiliser l'email et le mot de passe que vous avez choisis pour vous connecter.
-
-password_lost:
-    title: Mot de passe perdu
-    ok: Votre demande de réinitialisation de mot de passe est en cours. Un email va être envoyé d'ici quelques minutes.
-    link_login: Je me connecte.
-
-login:
-    title: Identifiez-vous
-    link_password: J'ai perdu mon mot de passe
-    link_registration: Je n'ai pas de compte
-
-my_account:
-    title: Mise à jour de mes informations personnelles
-    ok: Vos informations personnelles ont été mises à jour
-
-anonymous:
-    home:
-        title: Bienvenue !
-        sub_title: Retrainrd est une application permettant de marquer les retards et différents problèmes rencontrés lors de vos voyages SNCF.
-        registration_title: Inscription
-        registration_body_1: Vous pouvez vous inscrire en suivant
-        registration_body_2: ce lien.
-        registration_body_3: Quelques informations vous seront demandées.
-        registration_body_4: Ensuite vous pourrez profiter pleinement de toutes les fonctionnalités.
-        connection_title: Connexion
-        connection_body_1: Vous avez déjà un compte ? Alors cliquez
-        connection_body_2: ici.
-        password_lost_title: Mot de passe perdu
-        password_lost_body_1: Si vous avez perdu votre mot de passe, pas de panique !
-        password_lost_body_2: Suivez
-        password_lost_body_3: ce lien
-        password_lost_body_4: ", remplissez le formulaire et un nouveau mot de passe sera créé."
-
 
 admin:
     menu:
