@@ -109,6 +109,8 @@ easy_admin:
             list:
                 sort: ['id', 'ASC']
                 dql_filter: "entity.roles NOT LIKE '%%ROLE_ADMIN%%'"
+                actions:
+                    - { name: 'app_simple_registration_send', icon: 'refresh', label: '', type: 'route' }
                 fields:
                     - { property: 'id', label: 'admin.user.fields.id' }
                     - { property: 'email', label: 'admin.user.fields.email' }

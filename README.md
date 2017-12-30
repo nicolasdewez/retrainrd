@@ -13,7 +13,6 @@ To Change in composer.json symfony version: 3.4 -> 4.0
 
 ## Features
 
-* Resend registration mail
 * Change config to "Sf application"
 
 

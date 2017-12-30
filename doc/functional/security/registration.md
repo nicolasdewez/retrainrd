@@ -19,3 +19,8 @@
 * Go to the uri `/connect`.
 * Fill fields with email and password chosen.
 * Submit the form.
+
+
+## Resend email of registration
+
+The administrators can resend the mail in the application.

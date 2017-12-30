@@ -24,6 +24,11 @@ class UserManager
         $this->userRepository = $this->manager->getRepository(User::class);
     }
 
+    public function findUser(int $id): ?User
+    {
+        return $this->userRepository->find($id);
+    }
+
     public function getOrCreateUserFromGoogle(GoogleUser $googleUser): User
     {
         return $this->getOrCreateUser(

@@ -90,18 +90,18 @@ recreate: destroy up ## Recreate containers
 
 
 
-.PHONY: queue-open
-queue-open: ## Open the queue admin
+.PHONY: messag-open
+messag-open: ## Open the messa admin
 	@xdg-open http://$(RABBITMQ).$(NETWORK):15672/ > /dev/null
 
-.PHONY: queue-init
-queue-init: ## Init exchanges / queues in RabbitMq
+.PHONY: messag-init
+messag-init: ## Init exchanges / queues in RabbitMq
 	@$(EXEC) $(APP) bin/console rabbitmq:setup-fabric
 
-.PHONY: queue-purge
-queue-purge: ## Purge queue (ie. make queue-purge name="registration")
+.PHONY: messag-purge
+messag-purge: ## Purge messa (ie. make messag-purge name="registration")
 ifndef name
-	@echo "To use the 'queue-purge' target, you MUST add the 'name' argument"
+	@echo "To use the 'messag-purge' target, you MUST add the 'name' argument"
 	exit 1
 endif
 	@$(EXEC) $(APP) bin/console rabbitmq:purge $(name) --no-interaction

@@ -2,14 +2,19 @@
 
 namespace App\Controller\Security;
 
+use App\Entity\User;
 use App\Form\Type\ActiveUserType;
 use App\Form\Type\RegistrationType;
+use App\Manager\UserManager;
 use App\Security\ActiveUser;
 use App\Security\AskRegistration;
+use App\Security\AskResendRegistration;
 use App\Security\CheckRegistrationCode;
 use App\Session\Flash;
 use App\Session\FlashMessage;
+use App\Workflow\RegistrationWorkflow;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -98,5 +103,34 @@ class SimpleRegistrationController
                 'form' => $form->createView(),
             ])
         );
+    }
+
+    /**
+     * @Route("/admin/send-registration", name="app_simple_registration_send", methods={"GET"})
+     * @Security("has_role('ROLE_ADMIN')")
+     */
+    public function sendRegistrationAction(Request $request, UserManager $manager, RegistrationWorkflow $registrationWorkflow, AskResendRegistration $askResendRegistration)
+    {
+        $user = $manager->findUser((int) $request->query->get('id'));
+
+        if (!$registrationWorkflow->canApplyRegistration($user)) {
+            $this->flashMessage->add(
+                Flash::TYPE_NOTICE,
+                'Cette action ne peut pas être exécutée pour cet utilisateur'
+            );
+        } else {
+            $askResendRegistration->execute($user);
+            $this->flashMessage->add(
+                Flash::TYPE_NOTICE,
+                'Le mail d\'activation du compte utilisateur va être réenvoyé d\'ici quelques minutes'
+            );
+        }
+
+        return new RedirectResponse(
+            $this->router->generate('easyadmin', [
+                'action' => 'list',
+                'entity' => $request->query->get('entity'),
+            ]
+        ));
     }
 }
