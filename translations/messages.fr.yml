@@ -30,6 +30,8 @@ form:
         current_password: Mot de passe actuel
         new_password_1: Nouveau mot de passe
         new_password_2: Répêter le mot de passe
+    switch_user:
+        email: Email
 
 registration:
     title: Inscription
@@ -100,6 +102,7 @@ admin:
             password: Mot de passe
             first_name: Prénom
             last_name: Nom
+            super_admin: Super administrateur
             email: Email
             enabled: Actif
     user:

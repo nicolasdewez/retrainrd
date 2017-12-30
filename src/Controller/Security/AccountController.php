@@ -109,10 +109,7 @@ class AccountController
 
         return new Response(
             $this->twig->render('security/account/user-bar.html.twig', [
-                'username' => $user->getUsername(),
-                'firstName' => $user->getFirstName(),
-                'lastName' => $user->getLastName(),
-                'isAdmin' => $user->isAdmin(),
+                'user' => $user,
             ])
         );
     }

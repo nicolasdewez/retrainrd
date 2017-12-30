@@ -214,6 +214,40 @@ class User implements AdvancedUserInterface
         return in_array(Role::ADMIN, $this->roles);
     }
 
+    public function isSuperAdmin(): bool
+    {
+        return in_array(Role::SUPER_ADMIN, $this->roles);
+    }
+
+    public function setSuperAdmin(bool $superAdmin): void
+    {
+        // Set user as a super admin!
+        if ($superAdmin) {
+            // User is already super admin
+            if ($this->isSuperAdmin()) {
+                return;
+            }
+
+            $this->roles[] = Role::SUPER_ADMIN;
+
+            return;
+        }
+
+        // Don't set user as a super admin
+
+        // User isn't a super admin
+        if (!$this->isSuperAdmin()) {
+            return;
+        }
+
+        // Delete role
+        $roles = array_filter($this->roles, function($role) {
+            return Role::SUPER_ADMIN !== $role;
+        });
+
+        $this->roles = $roles;
+    }
+
     public function getTitleRoles(): string
     {
         $roles = [];

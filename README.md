@@ -14,8 +14,8 @@ To Change in composer.json symfony version: 3.4 -> 4.0
 ## Features
 
 * Resend registration mail
-* Add ROLE_SUPERADMIN
 * Change config to "Sf application"
+* Delete useless translations (only keep admin, forms)
 
 
 ## Tests

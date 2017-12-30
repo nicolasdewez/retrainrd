@@ -8,6 +8,10 @@ security:
                 class: App\Entity\User
                 property: email
 
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -16,22 +20,28 @@ security:
         simple-registration:
             pattern: ^/(registration|active/.*)
             anonymous: true
+            logout_on_user_change: true
 
         account:
             pattern: ^/password-lost$
             anonymous: true
+            logout_on_user_change: true
 
         home:
             pattern: ^/$
             anonymous: true
+            logout_on_user_change: true
 
         connection:
             pattern: ^/connect(/.*)?
             anonymous: true
+            logout_on_user_change: true
 
         app:
             provider: users
             pattern: ^/
+            logout_on_user_change: true
+            switch_user: true
             form_login:
                 login_path: app_connection
                 check_path: app_connection_check
@@ -39,5 +49,7 @@ security:
             logout:
                 path: app_disconnection
                 target: app_connection
+
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/switch-user, roles: [ROLE_SUPER_ADMIN, ROLE_PREVIOUS_ADMIN] }

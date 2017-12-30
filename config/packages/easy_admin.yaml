@@ -67,12 +67,13 @@ easy_admin:
             title: 'admin.entities.user_admin'
             list:
                 sort: ['id', 'ASC']
-                dql_filter: "entity.roles = 'ROLE_ADMIN'"
+                dql_filter: "entity.roles LIKE '%%ROLE_ADMIN%%'"
                 fields:
                     - { property: 'id', label: 'admin.user_admin.fields.id' }
                     - { property: 'email', label: 'admin.user_admin.fields.email' }
                     - { property: 'firstName', label: 'admin.user_admin.fields.first_name' }
                     - { property: 'lastName', label: 'admin.user_admin.fields.last_name' }
+                    - { property: 'superAdmin', type: 'boolean', label: 'admin.user_admin.fields.super_admin' }
                     - { property: 'enabled', type: 'boolean', label: 'admin.user_admin.fields.enabled' }
             show:
                 fields:
@@ -80,6 +81,7 @@ easy_admin:
                     - { property: 'email', label: 'admin.user_admin.fields.email' }
                     - { property: 'firstName', label: 'admin.user_admin.fields.first_name' }
                     - { property: 'lastName', label: 'admin.user_admin.fields.last_name' }
+                    - { property: 'superAdmin', type: 'boolean', label: 'admin.user_admin.fields.super_admin' }
                     - { property: 'enabled', label: 'admin.user_admin.fields.enabled' }
             new:
                 fields:
@@ -87,6 +89,7 @@ easy_admin:
                     - { property: 'password', label: 'admin.user_admin.fields.password' }
                     - { property: 'firstName', label: 'admin.user_admin.fields.first_name' }
                     - { property: 'lastName', label: 'admin.user_admin.fields.last_name' }
+                    - { property: 'superAdmin', type: 'checkbox', label: 'admin.user_admin.fields.super_admin' }
                     - { property: 'enabled', label: 'admin.user_admin.fields.enabled' }
                 form_options: { validation_groups: ['admin_create'] }
             edit:
@@ -94,6 +97,7 @@ easy_admin:
                     - { property: 'email', , type_options: { attr: { readonly: true } }, label: 'admin.user_admin.fields.email' }
                     - { property: 'firstName', label: 'admin.user_admin.fields.first_name' }
                     - { property: 'lastName', label: 'admin.user_admin.fields.last_name' }
+                    - { property: 'superAdmin', type: 'checkbox', label: 'admin.user_admin.fields.super_admin' }
                     - { property: 'enabled', label: 'admin.user_admin.fields.enabled' }
                 form_options: { validation_groups: ['admin_edit'] }
 
@@ -104,7 +108,7 @@ easy_admin:
             disabled_actions: ['new']
             list:
                 sort: ['id', 'ASC']
-                dql_filter: "entity.roles != 'ROLE_ADMIN'"
+                dql_filter: "entity.roles NOT LIKE '%%ROLE_ADMIN%%'"
                 fields:
                     - { property: 'id', label: 'admin.user.fields.id' }
                     - { property: 'email', label: 'admin.user.fields.email' }
